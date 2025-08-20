@@ -1,0 +1,82 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(cuid())
+  clerkId       String        @unique    // Clerk’s user ID
+  email         String?       @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  wallets       Wallet[]      // Relation: one user → many wallets
+  watchlist     Watchlist[]   // Coins the user is tracking
+}
+
+model Wallet {
+  id            String     @id @default(cuid())
+  address       String     @unique
+  type          WalletType
+  userId        String
+  user          User       @relation(fields: [userId], references: [id])
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  balances      Balance[]  // Historical balances
+}
+
+enum WalletType {
+  ETHEREUM
+  SOLANA
+}
+
+model Balance {
+  id            String     @id @default(cuid())
+  walletId      String
+  wallet        Wallet     @relation(fields: [walletId], references: [id])
+  tokenSymbol   String
+  amount        Float
+  fetchedAt     DateTime   @default(now())
+}
+
+model Coin {
+  id            String       @id @default(cuid())
+  symbol        String       @unique
+  name          String
+  blockchain    Blockchain
+  createdAt     DateTime     @default(now())
+
+  priceHistory  PriceHistory[]
+  watchlist     Watchlist[]
+}
+
+enum Blockchain {
+  ETHEREUM
+  SOLANA
+}
+
+model PriceHistory {
+  id         String   @id @default(cuid())
+  coinId     String
+  coin       Coin     @relation(fields: [coinId], references: [id])
+  price      Float
+  timestamp  DateTime @default(now())
+}
+
+model Watchlist {
+  id        String   @id @default(cuid())
+  userId    String
+  coinId    String
+  user      User     @relation(fields: [userId], references: [id])
+  coin      Coin     @relation(fields: [coinId], references: [id])
+  addedAt   DateTime @default(now())
+
+  @@unique([userId, coinId]) // prevent duplicate watchlist entries
+}
