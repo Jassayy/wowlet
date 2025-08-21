@@ -1,130 +1,90 @@
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
 
 export default async function Home() {
-     const { userId } = await auth();
-
      return (
-          <main className="min-h-screen">
-               {/* Header */}
-               <header className="w-full bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 border-b-8 border-black shadow-2xl">
-                    <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
-                         <div className="flex items-center space-x-4">
-                              <div className="text-4xl font-black text-white drop-shadow-lg">
-                                   🎨 CartoonPort
-                              </div>
-                         </div>
-                         <div className="flex items-center space-x-4">
-                              {userId ? (
-                                   <UserButton afterSignOutUrl="/" />
-                              ) : (
-                                   <>
-                                        <SignInButton>
-                                             <button className="cartoon-button bg-yellow-400 hover:bg-yellow-300 text-black font-black px-6 py-3 rounded-2xl border-4 border-black text-lg shadow-lg">
-                                                  Sign In 🚀
-                                             </button>
-                                        </SignInButton>
-                                        <SignUpButton>
-                                             <button className="cartoon-button bg-green-400 hover:bg-green-300 text-black font-black px-6 py-3 rounded-2xl border-4 border-black text-lg shadow-lg">
-                                                  Sign Up ✨
-                                             </button>
-                                        </SignUpButton>
-                                   </>
-                              )}
-                         </div>
-                    </div>
-               </header>
-
+          <main className="min-h-screen max-w-5xl mx-auto px-6 pt-24 pb-16 flex flex-col items-center justify-center space-y-16">
                {/* Hero Section */}
-               <div className="flex items-center justify-center min-h-[calc(100vh-120px)] px-12">
-                    <div className="max-w-5xl w-full text-center space-y-12">
-                         <div className="space-y-8">
-                              <h1 className="text-7xl md:text-8xl font-black tracking-tight">
-                                   <span className="gradient-text">
-                                        Track Your
-                                   </span>
-                                   <br />
-                                   <span className="text-pink-500">
-                                        Crypto Portfolio
-                                   </span>
-                                   <br />
-                                   <span className="text-purple-500">
-                                        Like Never Before!
-                                   </span>
-                              </h1>
+               <section className="text-center space-y-6">
+                    <h1 className="text-5xl font-extrabold text-pink-600 leading-tight drop-shadow-[4px_4px_0_rgba(0,0,0,0.9)]">
+                         Track Your{" "}
+                         <span className="bg-purple-400 px-2 border-2 border-black rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,0.9)] text-white">
+                              Crypto
+                         </span>
+                         <br />
+                         Portfolio in One Place 💰
+                    </h1>
+                    <p className="text-lg text-purple-700 max-w-2xl mx-auto">
+                         Connect your{" "}
+                         <span className="font-bold">MetaMask</span> and{" "}
+                         <span className="font-bold">Phantom</span> wallets to
+                         easily view, track, and manage all your crypto assets —
+                         all in one dashboard.
+                    </p>
 
-                              <div className="text-2xl md:text-3xl font-bold text-gray-700 max-w-4xl mx-auto leading-relaxed">
-                                   Connect your Ethereum & Solana wallets to see
-                                   all your tokens, balances, and live USD
-                                   values in a
-                                   <span className="text-pink-500">
-                                        {" "}
-                                        super fun
-                                   </span>{" "}
-                                   and
-                                   <span className="text-blue-500">
-                                        {" "}
-                                        colorful way!{" "}
-                                   </span>
-                                   🎯💎📈
-                              </div>
-                         </div>
-
-                         <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8">
-                              {userId ? (
-                                   <Link href="/dashboard">
-                                        <button className="cartoon-button bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-black px-12 py-6 rounded-3xl border-4 border-black text-2xl shadow-2xl glow-effect">
-                                             Go to Dashboard 🚀
-                                        </button>
-                                   </Link>
-                              ) : (
-                                   <>
-                                        <SignUpButton>
-                                             <button className="cartoon-button bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-300 hover:to-blue-400 text-white font-black px-12 py-6 rounded-3xl border-4 border-black text-2xl shadow-2xl glow-effect">
-                                                  Get Started Free! 🎉
-                                             </button>
-                                        </SignUpButton>
-                                        <SignInButton>
-                                             <button className="cartoon-button bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black font-black px-12 py-6 rounded-3xl border-4 border-black text-2xl shadow-2xl">
-                                                  I Have Account 🔑
-                                             </button>
-                                        </SignInButton>
-                                   </>
-                              )}
-                         </div>
-
-                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16">
-                              <div className="cartoon-card bg-gradient-to-br from-pink-200 to-pink-100 p-8 rounded-3xl">
-                                   <div className="text-5xl mb-4">🔗</div>
-                                   <h3 className="text-2xl font-black text-pink-600 mb-3">
-                                        Connect Wallets
-                                   </h3>
-                                   <p className="text-lg font-bold text-gray-700">
-                                        MetaMask & Phantom support
-                                   </p>
-                              </div>
-                              <div className="cartoon-card bg-gradient-to-br from-purple-200 to-purple-100 p-8 rounded-3xl">
-                                   <div className="text-5xl mb-4">📊</div>
-                                   <h3 className="text-2xl font-black text-purple-600 mb-3">
-                                        Live Tracking
-                                   </h3>
-                                   <p className="text-lg font-bold text-gray-700">
-                                        Real-time USD values
-                                   </p>
-                              </div>
-                              <div className="cartoon-card bg-gradient-to-br from-blue-200 to-blue-100 p-8 rounded-3xl">
-                                   <div className="text-5xl mb-4">🎨</div>
-                                   <h3 className="text-2xl font-black text-blue-600 mb-3">
-                                        Fun UI
-                                   </h3>
-                                   <p className="text-lg font-bold text-gray-700">
-                                        Cartoonish & colorful
-                                   </p>
-                              </div>
-                         </div>
+                    <div className="flex gap-6 justify-center pt-4">
+                         <Link href="/sign-up">
+                              <Button
+                                   className="bg-white text-black font-bold px-6 py-3 rounded-lg border-2 border-black
+               shadow-[4px_4px_0px_0px_rgba(0,0,0,0.9)] hover:bg-neutral-200
+               transition-transform active:translate-x-[2px] active:translate-y-[2px]
+               active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.9)] cursor-pointer"
+                              >
+                                   🚀 Connect Wallet
+                              </Button>
+                         </Link>
                     </div>
-               </div>
+               </section>
+
+               {/* Features Section */}
+               <section className="grid md:grid-cols-3 gap-8 w-full">
+                    <div className="bg-pink-100 p-6 rounded-xl border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.9)]">
+                         <h2 className="text-xl font-bold mb-2 text-pink-600">
+                              🔗 Easy Wallet Connect
+                         </h2>
+                         <p className="text-purple-800">
+                              Connect MetaMask or Phantom with one click — no
+                              hassle, just secure and fast.
+                         </p>
+                    </div>
+
+                    <div className="bg-green-100 p-6 rounded-xl border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.9)]">
+                         <h2 className="text-xl font-bold mb-2 text-green-600">
+                              📈 Real-Time Portfolio
+                         </h2>
+                         <p className="text-green-800">
+                              Track all your crypto assets in real time with a
+                              clean, intuitive dashboard.
+                         </p>
+                    </div>
+
+                    <div className="bg-yellow-100 p-6 rounded-xl border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.9)]">
+                         <h2 className="text-xl font-bold mb-2 text-yellow-600">
+                              🔒 Secure by Design
+                         </h2>
+                         <p className="text-yellow-800">
+                              Your wallet keys stay safe — we never store them.
+                              Full control stays with you.
+                         </p>
+                    </div>
+               </section>
+
+               {/* Call to Action */}
+               <section className="text-center space-y-4">
+                    <h2 className="text-3xl font-extrabold drop-shadow-[3px_3px_0_rgba(0,0,0,0.9)] text-purple-600">
+                         Ready to Manage Your Crypto Like a Pro? 🚀
+                    </h2>
+                    <Link href="sign-up">
+                         <Button
+                              className="bg-teal-400 text-white font-bold px-8 py-4 rounded-lg border-2 border-black
+             shadow-[5px_5px_0px_0px_rgba(0,0,0,0.9)] hover:bg-teal-600
+             transition-transform active:translate-x-[2px] active:translate-y-[2px]
+             active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.9)] cursor-pointer"
+                         >
+                              Get Started Now
+                         </Button>
+                    </Link>
+               </section>
           </main>
      );
 }

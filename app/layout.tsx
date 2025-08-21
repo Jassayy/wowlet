@@ -1,10 +1,10 @@
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { neobrutalism } from "@clerk/themes";
 import { Toaster } from "react-hot-toast";
+import Navbar from "@/components/ReusableComponents/Navbar";
 
 const geistSans = Geist({
      variable: "--font-geist-sans",
@@ -35,19 +35,20 @@ export default function RootLayout({
                <html lang="en" suppressHydrationWarning>
                     <body
                          suppressHydrationWarning
-                         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 min-h-screen`}
+                         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
                     >
+                         <Navbar />
                          <Toaster
                               position="top-right"
                               toastOptions={{
                                    duration: 4000,
                                    style: {
-                                        background: '#FFE4E6',
-                                        color: '#BE185D',
-                                        border: '3px solid #EC4899',
-                                        borderRadius: '16px',
-                                        fontWeight: 'bold',
-                                        fontSize: '16px',
+                                        background: "#FFE4E6",
+                                        color: "#BE185D",
+                                        border: "3px solid #EC4899",
+                                        borderRadius: "16px",
+                                        fontWeight: "bold",
+                                        fontSize: "16px",
                                    },
                               }}
                          />

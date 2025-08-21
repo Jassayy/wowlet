@@ -1,4 +1,3 @@
-
 "use client";
 
 import { WalletType } from "@prisma/client";
@@ -95,27 +94,39 @@ const ConnectPhantom = () => {
      };
 
      return (
-          <div className="space-y-4">
-               <div className="flex flex-col gap-3">
+          <div className="space-y-6">
+               <div className="flex flex-col gap-4">
                     {!account ? (
                          <Button
                               onClick={connectWallet}
-                              className="cartoon-button bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-black px-6 py-4 rounded-2xl border-4 border-black text-lg shadow-lg w-full"
+                              className="bg-purple-400 hover:bg-purple-300 text-black font-extrabold 
+                              px-6 py-4 rounded-2xl border-4 border-black text-lg
+                              shadow-[6px_6px_0px_rgba(0,0,0,0.9)]
+                              transition-transform active:translate-x-[3px] active:translate-y-[3px]
+                              active:shadow-[3px_3px_0px_rgba(0,0,0,0.9)] cursor-pointer"
                          >
                               👻 Connect Phantom
                          </Button>
                     ) : (
-                         <div className="flex flex-col gap-3">
+                         <div className="flex flex-col gap-4">
                               <Button
                                    onClick={disconnectWallet}
-                                   className="cartoon-button bg-gradient-to-r from-red-400 to-pink-500 hover:from-red-300 hover:to-pink-400 text-white font-black px-6 py-3 rounded-2xl border-4 border-black text-lg shadow-lg"
+                                   className="bg-red-400 hover:bg-red-300 text-black font-extrabold 
+                                   px-6 py-3 rounded-2xl border-4 border-black text-lg
+                                   shadow-[5px_5px_0px_rgba(0,0,0,0.9)]
+                                   transition-transform active:translate-x-[2px] active:translate-y-[2px]
+                                   active:shadow-[2px_2px_0px_rgba(0,0,0,0.9)] cursor-pointer"
                               >
                                    🔌 Disconnect Wallet
                               </Button>
                               <Button
                                    onClick={() => fetchBalance()}
                                    disabled={loading}
-                                   className="cartoon-button bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-300 hover:to-blue-400 text-white font-black px-6 py-3 rounded-2xl border-4 border-black text-lg shadow-lg"
+                                   className="bg-green-400 hover:bg-green-300 text-black font-extrabold 
+                                   px-6 py-3 rounded-2xl border-4 border-black text-lg
+                                   shadow-[5px_5px_0px_rgba(0,0,0,0.9)]
+                                   transition-transform active:translate-x-[2px] active:translate-y-[2px]
+                                   active:shadow-[2px_2px_0px_rgba(0,0,0,0.9)] cursor-pointer disabled:opacity-70"
                               >
                                    {loading ? "🔄 Loading..." : "🔃 Refresh Balance"}
                               </Button>
@@ -124,25 +135,26 @@ const ConnectPhantom = () => {
                </div>
 
                {account && (
-                    <div className="cartoon-card bg-gradient-to-br from-purple-100 to-pink-100 p-4 rounded-2xl">
-                         <div className="text-center space-y-2">
-                              <div className="text-lg font-bold text-purple-700">🔗 Connected</div>
-                              <div className="text-sm font-semibold text-gray-600 break-all">
-                                   {account}
-                              </div>
-                              <div className="text-xl font-black text-green-600">
-                                   {loading
-                                        ? "⏳ Fetching..."
-                                        : balance
-                                        ? `💰 ${balance} SOL`
-                                        : "—"}
-                              </div>
+                    <div className="bg-yellow-200 p-6 rounded-2xl border-4 border-black 
+                    shadow-[6px_6px_0px_rgba(0,0,0,0.9)] text-center space-y-3">
+                         <div className="text-xl font-extrabold text-purple-700">🔗 Connected</div>
+                         <div className="text-sm font-semibold text-gray-800 break-all 
+                         bg-white px-2 py-1 rounded-lg border-2 border-black shadow-sm">
+                              {account}
+                         </div>
+                         <div className="text-2xl font-black text-green-600 drop-shadow-[2px_2px_0_rgba(0,0,0,0.6)]">
+                              {loading
+                                   ? "⏳ Fetching..."
+                                   : balance
+                                   ? `💰 ${balance} SOL`
+                                   : "—"}
                          </div>
                     </div>
                )}
 
                {error && (
-                    <div className="cartoon-border bg-red-100 border-red-500 text-red-700 p-3 rounded-2xl text-center font-bold">
+                    <div className="bg-red-200 border-4 border-black text-red-800 p-4 rounded-2xl font-bold 
+                    text-center shadow-[4px_4px_0px_rgba(0,0,0,0.9)]">
                          ⚠️ {error}
                     </div>
                )}
