@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-     title: "CartoonPort - Crypto Portfolio Tracker",
-     description: "Track your crypto portfolio in a fun, cartoonish way!",
+     title: "Wowlet",
+     description: "Track your crypto portfolio in one place",
 };
 
 export default function RootLayout({
